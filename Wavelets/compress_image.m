@@ -36,7 +36,7 @@ N_compression = round((1-taux_compression) * size_wc1 * size_wc2);
 
 if linear==true
     % Linear compression
-    N_coeff = size(wc);
+    N_coeff = size_wc1 * size_wc2; 
     wc(N_compression:N_coeff) = 0;
 else
     % Non linear compression
@@ -46,6 +46,9 @@ else
     indices = find(abs(wc) < coeff_min);
     wc(indices) = 0;
 end
+
+size(wc)
+size(find(abs(wc) == 0))
 
 yy = IWT2_PO(wc, coarse_scale, qmf);
 
