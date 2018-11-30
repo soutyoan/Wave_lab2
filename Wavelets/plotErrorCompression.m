@@ -1,13 +1,13 @@
-function plotErrorCompression(points_x, points_y, family, dataset)
+function plotErrorCompression()
 
     range = (0.01 : 0.01 : 0.99); 
 
     for i=1:99
-        results(i) = errorCompression(points_x, points_y, family, dataset, i/100.0); 
+        results(i) = errorCompression('Haar', 4, i/100.0); 
     end
 
     loglog(range, results); 
-    title (strcat("Error compression. Curve Sampling = ", int2str(points_x))); 
+    title (strcat("Error compression.")); 
     xlabel("compression");
     ylabel("error"); 
 
