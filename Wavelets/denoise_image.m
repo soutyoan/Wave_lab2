@@ -1,7 +1,7 @@
-
+img_name='Lenna'; % choice of image
 for i=1:10
     subplot(1,2,1);
-    signal2d = ReadImage('Lenna') / 255;
+    signal2d = ReadImage(img_name) / 255;
     [n, n2] = size(signal2d);
     sigma=0.01*i;
     signal2d = signal2d + GWN2(n, sigma);

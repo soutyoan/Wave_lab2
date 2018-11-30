@@ -1,8 +1,9 @@
 subplot(1,3,1);
 colormap('gray');
-signal2d = ReadImage('Lenna')/255;
+img_name = 'Lenna'; % choice of image from ReadImage database
+signal2d = ReadImage(img_name)/255;
 
-linear = false;
+linear = true; % choice to use linear or non linear approximation
 
 
 size_image = size(signal2d);
@@ -14,10 +15,12 @@ title('Original function');
 
 subplot(1,3,2);
 
-taux_compression = 0.95;
+taux_compression = 0.93; % choice of compression rate (must be in [0, 1])
 
-qmf = MakeONFilter('Daubechies', 4);
-coarse_scale = 2;
+fam_name = 'Haar'; % choice of orthogonal wavelet family
+v_m = 4; % choice of vanishing moment
+qmf = MakeONFilter(fam_name, v_m);
+coarse_scale = 2; % choice of coarse scale for FWT2_PO and IFWT2_PO
 wc = FWT2_PO(signal2d, coarse_scale, qmf);
 
 [size_wc1, size_wc2]=size(wc);
@@ -49,4 +52,7 @@ yy = IWT2_PO(wc, coarse_scale, qmf);
 subplot(1,3,3);
 imshow(yy);
 axis off;
-title('Recontructed function');
+title('Reconstructed function');
+
+name_fig=strcat(strcat("comp_", img_name), strcat(fam_name, int2str(100*taux_compression)));
+saveas(gcf, strcat(name_fig, '.png'));

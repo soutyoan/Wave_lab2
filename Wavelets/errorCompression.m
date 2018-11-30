@@ -1,7 +1,10 @@
 function error = compressFunction(family, vanishing_moment, taux_compression)
 %%%%
-% 
-%
+% family : orthogonal wavelet family
+% vanishing_moment : vanishing moment 
+% taux_compression : compression rate
+
+% computation of error rate
 %%%%
 
     signal2d = ReadImage('Lenna')/255;
