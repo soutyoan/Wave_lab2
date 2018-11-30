@@ -15,7 +15,7 @@ title('Original function');
 
 subplot(1,3,2);
 
-taux_compression = 0.93; % choice of compression rate (must be in [0, 1])
+taux_compression = 0.95; % choice of compression rate (must be in [0, 1])
 
 fam_name = 'Haar'; % choice of orthogonal wavelet family
 v_m = 4; % choice of vanishing moment

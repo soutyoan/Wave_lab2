@@ -231,12 +231,6 @@ urlcolor=black}
 \pagestyle{fancy}
 
 
-\tableofcontents
-
-\clearpage
-
-\listoffigures
-
 \clearpage
 
 \section{Compression d'images 2D}
@@ -244,6 +238,7 @@ La compression a été testée sur plusieurs images générées à partir de la 
 
   $N_{comp} = \floor* {N_{total} * (1 - \tau)}$
 
+L'approximation linéaire consiste simplement à conserver les $N_{comp}$ premiers coefficients d'ondelettes, tandis que l'approximation non linéaire considère les $N_{comp}$ plus grands coefficients d'ondelettes (en valeur absolue).
 
 
 
@@ -285,6 +280,24 @@ On peut comparer l'efficacité de compression entre différentes familles d'onde
   \includegraphics[width=\textwidth]{error_comp_Daubechies4}\hfill
   \caption{Évolution de l'erreur en fonction de $\tau$ avec la base de Daubechies}
 \end{figure}
+
+
+Nous avons programmé l'approximation linéaire et non linéaire. On constate alors que l'approximation non linéaire est bien plus efficace que l'approximation linéaire.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{comp_LennaHaar95bis.png}\vfill
+  \caption{Compression linéaire de Lenna avec une base de Haar, $\tau=0.95$}
+\end{figure}
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{comp_LennaHaar95.png}\vfill
+  \caption{Compression non linéaire de Lenna avec une base de Haar, $\tau=0.95$}
+\end{figure}
+
+
 \clearpage
 \section{Débruitages d'images}
 On considère une image 2D, bruitée par un signal Gaussien de moyenne nulle, d'écart-type $\sigma > 0$. On utilise la fonction \texttt{ThreshWave2} qui prend en argument le signal bruité (de longueur de la forme $2^J$), le filtre miroir en quadrature (\texttt{qmf}), et calcule le signal estimé. La fonction estime automatiquement $\sigma$ à l'aide de la valeur médiane et permet d'opter au choix pour un \textit{soft thresholding} ou \textit{hard thresholding}.
@@ -305,10 +318,10 @@ Le dossier Wavelets/ contient les scripts matlab suivants :
 
 
 \paragraph{\texttt{compress\_image}}
-Compression d'une image à l'aide des ondelettes. Dans le script, l'utilisateur peut choisir une image parmi la banque d'images proposée par la librairie ReadImage, la famille orthogonale d'ondelettes, le \textit{vanishing moment}. L'affichage comprend, de gauche à droite, l'image originale, les coefficients d'ondelettes sur deux échelles et l'image compressée. L'image de la figure est stockée sous la forme  \textit{comp\_<image><famille><compression>}
+Compression d'une image à l'aide des ondelettes. Dans le script, l'utilisateur peut choisir une image parmi la banque d'images proposée par la librairie ReadImage, la famille orthogonale d'ondelettes, le \textit{vanishing moment}. On peut également choisir entre une approximation linéaire et non linéaire. L'affichage comprend, de gauche à droite, l'image originale, les coefficients d'ondelettes sur deux échelles et l'image compressée. L'image de la figure est stockée sous la forme  \textit{comp\_<image><famille><compression>}.
 
 \paragraph{\texttt{plotErrorCompression}}
-Affichage de l'évolution de l'erreur en fonction du taux de compression à partir de l'image Lenna. La famille d'ondelettes utilisée peut être choisie dans le script. La figure est stockée sous la forme \textit{error\_comp\_<famille>}
+Affichage de l'évolution de l'erreur en fonction du taux de compression à partir de l'image Lenna. La famille d'ondelettes utilisée peut être choisie dans le script. La figure est stockée sous la forme \textit{error\_comp\_<famille>}.
 
 \paragraph{\texttt{denoise\_image}}
 Débruitage d'une image à l'aide des ondelettes. L'image choisie peut être prise parmi la DataSet de ReadImage. Il est possible de paramétrer la valeur $\sigma$ du bruit blanc. L'affichage, de gauche à droite, comprend l'image bruitée et l'image débruitée.
