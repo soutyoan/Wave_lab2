@@ -1,5 +1,0 @@
-\select@language {french}
-\contentsline {section}{\numberline {I}Exercice 1}{4}{section.0.1}
-\contentsline {section}{\numberline {II}Exercice 2 : compression de signaux 1D}{5}{section.0.2}
-\contentsline {subsection}{\numberline {II.1}Compression de signaux}{5}{subsection.0.2.1}
-\contentsline {subsection}{\numberline {II.2}Analyse de l'erreur}{10}{subsection.0.2.2}
